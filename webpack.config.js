@@ -11,21 +11,17 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: 'public/dist'
     },
-    plugins: [],
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
     module: {
-      loaders: [
-        {
-            test: /\.jsx$/,
-            exclude: /node_modules/,
-            loader: ['react-hot']
-        },
-        {
-            test: /\.js$/,
-            include: [path.join(__dirname, 'public/src')],
-            loader: 'babel',
-            query: {
-                presets: ['es2015', 'react']
-            }
-        }]
+      loaders: [{
+          test: /\.js|.jsx$/,
+          exclude: /node_modules/,
+          loader: 'babel-loader',
+          query: {
+              presets: ['es2015', 'react']
+          }
+      }]
     }
 };
