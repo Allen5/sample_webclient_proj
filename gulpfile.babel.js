@@ -16,12 +16,12 @@ gulp.task('transform', () => {
 
 // watch transform
 gulp.task('watch-transform', () => {
-  return gulp.src('src/**/*.js')
-    .pipe(watch('src/**/*.js', {
+  return gulp.src('source/**/*.js')
+    .pipe(watch('source/**/*.js', {
       verbose: true
     }))
     .pipe(babel())
-    .pipe(gulp.dest('lib'));
+    .pipe(gulp.dest('build'));
 });
 
 gulp.task('webpack:build', (callback) => {

@@ -1,27 +1,50 @@
-var path = require('path');
-var webpack = require('webpack');
+//var path = require('path');
+//var webpack = require('webpack');
 
-module.exports = {
-    devtool: 'eval',
+const path = require('path');
+
+import webpack from 'webpack';
+
+/**
+ * 配置项
+ */
+const config = {
+
+    /**
+     * 入口文件
+     */
     entry: {
-        public: './public/src/index'
+        index: './source/index/index.js',
+        docs: './source/doc/index.js'
     },
+
+    /**
+     * 输出文件
+     */
     output: {
-        path: path.join(__dirname, 'public/dist'),
-        filename: 'bundle.js',
-        publicPath: 'public/dist'
+        path: path.resolve(__dirname, "build"),
+        filename: "[name].bundle.js"
     },
-    resolve: {
-        extensions: ['', '.js', '.jsx']
-    },
-    module: {
-      loaders: [{
-          test: /\.js|.jsx$/,
-          exclude: /node_modules/,
-          loader: 'babel-loader',
-          query: {
-              presets: ['es2015', 'react']
-          }
-      }]
-    }
-};
+
+    /**
+     * 模块化处理css, png, jpg等资源
+     * 模块化处理 es6 的js
+     */
+    module: [
+
+        /**
+         * 文本文件处理
+         */
+        {
+            test: /\.txt$/, use: 'raw-loader'
+        },
+
+
+    ]
+
+}
+
+/**
+ * 导出webpack配置项
+ */
+module.exports = config
